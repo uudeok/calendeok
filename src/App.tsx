@@ -1,9 +1,10 @@
 import React from "react";
+import Calendeok from "./Calendeok";
 
 const App = () => {
   return (
-    <div className="bg-blue-300">
-      <div>hello world</div>
+    <div>
+      <Calendeok />
     </div>
   );
 };
