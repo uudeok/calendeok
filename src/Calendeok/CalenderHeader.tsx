@@ -33,6 +33,8 @@ const CalenderHeader = ({
     }
   };
 
+  const getHeaderLabel = (curYear: number, curMonth: number) => {};
+
   return (
     <div className="flex w-80 bg-amber-50 p-2 justify-center">
       <button onClick={handlePrevButton}>«</button>

@@ -1,10 +1,12 @@
-import React from "react";
-import Calendeok from "./Calendeok";
+import React, { useState } from "react";
+import Calender from "./Calendeok";
 
 const App = () => {
+  const [date, setDate] = useState(new Date());
+
   return (
     <div>
-      <Calendeok />
+      <Calender selected={date} />
     </div>
   );
 };

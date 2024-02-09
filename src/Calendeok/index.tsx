@@ -1,20 +1,18 @@
 import CalenderHeader from "./CalenderHeader";
 import { useState } from "react";
 
-const Calendeok = () => {
-  const [curYear, setCurYear] = useState(new Date().getFullYear());
-  const [curMonth, setCurMonth] = useState(new Date().getMonth());
+type CalenderType = {
+  selected: Date;
+};
+
+const Calender = ({ selected }: CalenderType) => {
+  console.log(selected);
 
   return (
     <>
-      <CalenderHeader
-        curYear={curYear}
-        setCurYear={setCurYear}
-        curMonth={curMonth}
-        setCurMonth={setCurMonth}
-      />
+      <div></div>
     </>
   );
 };
 
-export default Calendeok;
+export default Calender;
