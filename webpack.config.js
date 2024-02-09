@@ -5,5 +5,6 @@ module.exports = (envVars) => {
   const { env } = envVars;
   const envConfig = require(`./webpack.dev.js`);
   const config = merge(commonConfig, envConfig);
+
   return config;
 };
