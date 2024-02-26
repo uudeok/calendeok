@@ -5,7 +5,7 @@ type NavigateType = {
   setCurYear: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const Navigate = ({
+const MonthController = ({
   curMonth,
   curYear,
   setCurMonth,
@@ -53,4 +53,4 @@ const Navigate = ({
   );
 };
 
-export default Navigate;
+export default MonthController;

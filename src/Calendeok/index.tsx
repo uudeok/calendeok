@@ -1,7 +1,7 @@
 import { useState } from "react";
 import DayOfWeek from "./DayOfWeek";
 import Day from "./Day";
-import Navigate from "./Navigate";
+import MonthController from "./MonthController";
 
 type CalenderType = {
   selected: Date;
@@ -15,14 +15,14 @@ const Calender = ({ selected, onChange }: CalenderType) => {
   return (
     <>
       <div className="flex flex-col w-96 bg-slate-50 m-auto">
-        <Navigate
+        <MonthController
           setCurMonth={setCurMonth}
           setCurYear={SetCurYear}
           curMonth={curMonth}
           curYear={curYear}
         />
         <DayOfWeek />
-        <Day curYear={curYear} curMonth={curMonth} />
+        <Day curYear={curYear} curMonth={curMonth} onChange={onChange} />
       </div>
     </>
   );
