@@ -1,8 +1,8 @@
+import DateCell from "./DateCell";
 import dayjs from "dayjs";
 import { MONTH_LABEL_VALUES } from "../@types";
 import { calculateMonthInfo, getSelectedMonth } from "../Util/month";
 import { MONTH_LABEL } from "../const";
-import DateCell from "./DateCell";
 
 type DayProps = {
   curYear: number;
@@ -91,7 +91,7 @@ const Day = ({ curYear, curMonth, onClick, curMonthOnly }: DayProps) => {
   };
 
   return (
-    <table className="h-96">
+    <table>
       <tbody onClick={handleDate}>{renderDate()}</tbody>
     </table>
   );

@@ -1,11 +1,25 @@
 import { MONTH_LABEL_VALUES } from "../@types";
 import { MONTH_LABEL } from "../const";
+import Today from "./Today";
 
 type DateCellType = {
   label: number;
   monthLabel: MONTH_LABEL_VALUES;
   curMonthOnly?: boolean;
-  isToday?: boolean;
+  isToday: boolean;
+};
+
+const getDateLabelColor = (monthLabel: MONTH_LABEL_VALUES) => {
+  switch (monthLabel) {
+    case MONTH_LABEL.MONTH_PREV:
+      return "grey";
+    case MONTH_LABEL.MONTH_CURRENT:
+      return "black";
+    case MONTH_LABEL.MONTH_NEXT:
+      return "grey";
+    default:
+      throw new Error("dateLabel color error");
+  }
 };
 
 const DateCell = ({
@@ -14,25 +28,20 @@ const DateCell = ({
   curMonthOnly,
   isToday,
 }: DateCellType) => {
-  console.log(isToday);
+  const labelColor = getDateLabelColor(monthLabel);
 
   return (
-    <td className="relative py-4">
+    <td className="py-3 border relative">
       {curMonthOnly && monthLabel !== MONTH_LABEL.MONTH_CURRENT ? null : (
         <button
-          className="w-full h-full flex justify-center items-center"
+          className={`w-12 h-12 flex justify-center items-center rounded-full transition duration-300 ease-in-out hover:bg-regal-blue hover:text-white text-center relative text-${labelColor}`}
           data-name={monthLabel}
         >
           {label}
         </button>
       )}
-      {isToday && (
-        <span className="text-xs text-center absolute bottom-0 left-0 right-0 flex justify-center items-center">
-          오늘
-        </span>
-      )}
+      <Today isToday={isToday} />
     </td>
   );
 };
-
 export default DateCell;
