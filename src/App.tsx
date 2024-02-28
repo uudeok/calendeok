@@ -8,6 +8,6 @@ const App = () => {
     console.log("date", date);
   };
 
-  return <Calender selected={date} onChange={handleDate} />;
+  return <Calender selected={date} onClick={handleDate} />;
 };
 export default App;

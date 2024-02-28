@@ -1,46 +1,89 @@
+import dayjs from "dayjs";
 import { MONTH_LABEL_VALUES } from "../@types";
-import { calculateMonthInfo } from "../Util/month";
+import { calculateMonthInfo, getSelectedMonth } from "../Util/month";
+import { MONTH_LABEL } from "../const";
+import DateCell from "./DateCell";
 
 type DayProps = {
   curYear: number;
   curMonth: number;
-  onChange: (date: Date) => void;
+  onClick: (date: Date) => void;
 };
 
 const TOTAL_DAYS = 42;
 
-const Day = ({ curYear, curMonth, onChange }: DayProps) => {
-  console.log(curYear, curMonth);
+const Day = ({ curYear, curMonth, onClick }: DayProps) => {
+  const renderDate = () => {
+    let cells = [];
+    const { firstDay, lastDate } = calculateMonthInfo(curYear, curMonth);
 
-  const { firstDay, lastDate } = calculateMonthInfo(curYear, curMonth);
-  let dateCell = new Date(curYear, curMonth, 1 - firstDay).getDate();
-  console.log(dateCell);
+    let dateCell = new Date(curYear, curMonth, 1 - firstDay).getDate();
+    let count = 0;
+    let monthLabel = MONTH_LABEL.MONTH_PREV as MONTH_LABEL_VALUES;
+    let month = curMonth - 1;
 
-  let count = 0;
-  let monthLabel = "prev" as MONTH_LABEL_VALUES;
-  let month = curMonth - 1;
+    while (count < TOTAL_DAYS) {
+      if (count === firstDay) {
+        monthLabel = MONTH_LABEL.MONTH_CURRENT;
+        month++;
+        dateCell = 1;
+      }
 
-  while (count < TOTAL_DAYS) {
-    if (count === firstDay) {
-      monthLabel = "current";
-      month++;
-      dateCell = 1;
+      if (count > firstDay && dateCell > lastDate) {
+        month++;
+        monthLabel = MONTH_LABEL.MONTH_NEXT;
+        dateCell = 1;
+      }
+
+      const renderingDate = dayjs(new Date(curYear, month, dateCell)).format(
+        "YYYY-MM-DD"
+      );
+      cells.push(
+        <DateCell label={dateCell} monthLabel={monthLabel} key={dateCell} />
+      );
+      count++;
+      dateCell++;
     }
 
-    if (count > firstDay && count > lastDate) {
-      month++;
-      monthLabel = "next";
-      dateCell = 1;
+    let cellRows = [];
+    while (cells.length) {
+      const row = cells.splice(0, 7);
+      cellRows.push(<tr key={cells.length}>{row}</tr>);
+    }
+    return cellRows;
+  };
+
+  const handleDate = (e: React.MouseEvent) => {
+    const date = e.target as HTMLTableElement;
+    const dateLabel = date.textContent!.padStart(2, "0");
+    const month = date.dataset.name as MONTH_LABEL_VALUES;
+
+    if (!month) return;
+
+    const selectedMonth = getSelectedMonth(month, curMonth);
+    let selectedYear = curYear;
+
+    if (month === "next" && selectedMonth === 0) {
+      selectedYear = selectedYear + 1;
     }
 
-    const renderingDate = new Date(curYear, month, dateCell);
-    console.log(renderingDate);
-  }
+    if (month === "prev" && selectedMonth === 11) {
+      selectedYear = selectedYear - 1;
+    }
+
+    const selectedDate = new Date(
+      selectedYear,
+      selectedMonth,
+      Number(dateLabel)
+    );
+
+    onClick(selectedDate);
+  };
 
   return (
-    <div>
-      <div></div>
-    </div>
+    <table>
+      <tbody onClick={handleDate}>{renderDate()}</tbody>
+    </table>
   );
 };
 

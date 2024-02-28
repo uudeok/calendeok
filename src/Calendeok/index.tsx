@@ -5,10 +5,10 @@ import MonthController from "./MonthController";
 
 type CalenderType = {
   selected: Date;
-  onChange: (date: Date) => void;
+  onClick: (date: Date) => void;
 };
 
-const Calender = ({ selected, onChange }: CalenderType) => {
+const Calender = ({ selected, onClick }: CalenderType) => {
   const [curYear, SetCurYear] = useState(selected.getFullYear());
   const [curMonth, setCurMonth] = useState(selected.getMonth());
 
@@ -22,7 +22,7 @@ const Calender = ({ selected, onChange }: CalenderType) => {
           curYear={curYear}
         />
         <DayOfWeek />
-        <Day curYear={curYear} curMonth={curMonth} onChange={onChange} />
+        <Day curYear={curYear} curMonth={curMonth} onClick={onClick} />
       </div>
     </>
   );
