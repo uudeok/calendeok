@@ -8,6 +8,6 @@ const App = () => {
     console.log("date", date);
   };
 
-  return <Calender selected={date} onClick={handleDate} />;
+  return <Calender selected={date} onClick={handleDate} curMonthOnly={false} />;
 };
 export default App;

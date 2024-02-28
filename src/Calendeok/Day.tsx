@@ -8,11 +8,12 @@ type DayProps = {
   curYear: number;
   curMonth: number;
   onClick: (date: Date) => void;
+  curMonthOnly?: boolean;
 };
 
 const TOTAL_DAYS = 42;
 
-const Day = ({ curYear, curMonth, onClick }: DayProps) => {
+const Day = ({ curYear, curMonth, onClick, curMonthOnly }: DayProps) => {
   const renderDate = () => {
     let cells = [];
     const { firstDay, lastDate } = calculateMonthInfo(curYear, curMonth);
@@ -38,8 +39,17 @@ const Day = ({ curYear, curMonth, onClick }: DayProps) => {
       const renderingDate = dayjs(new Date(curYear, month, dateCell)).format(
         "YYYY-MM-DD"
       );
+
+      const day = dayjs();
+
       cells.push(
-        <DateCell label={dateCell} monthLabel={monthLabel} key={dateCell} />
+        <DateCell
+          label={dateCell}
+          monthLabel={monthLabel}
+          key={dateCell}
+          curMonthOnly={curMonthOnly}
+          isToday={day.isSame(new Date(curYear, month, dateCell), "day")}
+        />
       );
       count++;
       dateCell++;
@@ -81,7 +91,7 @@ const Day = ({ curYear, curMonth, onClick }: DayProps) => {
   };
 
   return (
-    <table>
+    <table className="h-96">
       <tbody onClick={handleDate}>{renderDate()}</tbody>
     </table>
   );

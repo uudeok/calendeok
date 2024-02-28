@@ -6,9 +6,10 @@ import MonthController from "./MonthController";
 type CalenderType = {
   selected: Date;
   onClick: (date: Date) => void;
+  curMonthOnly?: boolean;
 };
 
-const Calender = ({ selected, onClick }: CalenderType) => {
+const Calender = ({ selected, onClick, curMonthOnly }: CalenderType) => {
   const [curYear, SetCurYear] = useState(selected.getFullYear());
   const [curMonth, setCurMonth] = useState(selected.getMonth());
 
@@ -22,7 +23,12 @@ const Calender = ({ selected, onClick }: CalenderType) => {
           curYear={curYear}
         />
         <DayOfWeek />
-        <Day curYear={curYear} curMonth={curMonth} onClick={onClick} />
+        <Day
+          curYear={curYear}
+          curMonth={curMonth}
+          onClick={onClick}
+          curMonthOnly={curMonthOnly}
+        />
       </div>
     </>
   );
