@@ -3,17 +3,37 @@ import dayjs from "dayjs";
 import { MONTH_LABEL_VALUES } from "../@types";
 import { calculateMonthInfo, getSelectedMonth } from "../Util/month";
 import { MONTH_LABEL } from "../const";
+import { getExceptTimeDate } from "../Util/date";
 
 type DayProps = {
   curYear: number;
   curMonth: number;
   onClick: (date: Date) => void;
   curMonthOnly?: boolean;
+  minDate?: Date;
 };
 
 const TOTAL_DAYS = 42;
 
-const Day = ({ curYear, curMonth, onClick, curMonthOnly }: DayProps) => {
+const Day = ({
+  curYear,
+  curMonth,
+  onClick,
+  curMonthOnly,
+  minDate,
+}: DayProps) => {
+  const isPassedDate = (renderDate: Date) => {
+    if (!minDate) return;
+
+    // <--! Date 로 비교할 경우, 시간도 비교하기 때문에 날짜만 비교하기 위해 시간을 초기화해야함 !-->
+    const standardDate = getExceptTimeDate(minDate);
+
+    if (renderDate < standardDate) {
+      return false;
+    }
+    return true;
+  };
+
   const renderDate = () => {
     let cells = [];
     const { firstDay, lastDate } = calculateMonthInfo(curYear, curMonth);
@@ -36,9 +56,9 @@ const Day = ({ curYear, curMonth, onClick, curMonthOnly }: DayProps) => {
         dateCell = 1;
       }
 
-      const renderingDate = dayjs(new Date(curYear, month, dateCell)).format(
-        "YYYY-MM-DD"
-      );
+      const renderingDate = new Date(curYear, month, dateCell);
+
+      const isPassed = isPassedDate(renderingDate);
 
       const day = dayjs();
 
@@ -49,6 +69,7 @@ const Day = ({ curYear, curMonth, onClick, curMonthOnly }: DayProps) => {
           key={dateCell}
           curMonthOnly={curMonthOnly}
           isToday={day.isSame(new Date(curYear, month, dateCell), "day")}
+          disabled={!isPassed}
         />
       );
       count++;

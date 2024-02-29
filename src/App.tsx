@@ -8,6 +8,13 @@ const App = () => {
     console.log("date", date);
   };
 
-  return <Calender selected={date} onClick={handleDate} curMonthOnly={false} />;
+  return (
+    <Calender
+      selected={date}
+      onClick={handleDate}
+      curMonthOnly={false}
+      minDate={new Date()}
+    />
+  );
 };
 export default App;
