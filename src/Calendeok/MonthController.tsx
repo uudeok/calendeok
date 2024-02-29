@@ -43,7 +43,7 @@ const MonthController = ({
   };
 
   return (
-    <div className="flex w-96 bg-amber-50 p-2 justify-center">
+    <div className="flex w-96 p-4 border justify-center">
       <button onClick={handlePrevButton}>«</button>
       <span className="flex-grow text-center">
         {getMonthLabel(curYear, curMonth)}

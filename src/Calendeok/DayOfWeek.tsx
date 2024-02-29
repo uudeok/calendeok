@@ -1,15 +1,15 @@
+const daysInKorean = ["일", "월", "화", "수", "목", "금", "토"];
+
 const DayOfWeek = () => {
   return (
-    <table className="bg-slate-100">
+    <table>
       <tbody>
         <tr>
-          <th>일</th>
-          <th>월</th>
-          <th>화</th>
-          <th>수</th>
-          <th>목</th>
-          <th>금</th>
-          <th>토</th>
+          {daysInKorean.map((day) => (
+            <th key={day} className="font-normal">
+              {day}
+            </th>
+          ))}
         </tr>
       </tbody>
     </table>
