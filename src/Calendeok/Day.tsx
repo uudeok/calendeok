@@ -11,6 +11,7 @@ type DayProps = {
   onClick: (date: Date) => void;
   curMonthOnly?: boolean;
   minDate?: Date;
+  maxDate?: Date;
 };
 
 const TOTAL_DAYS = 42;
@@ -21,6 +22,7 @@ const Day = ({
   onClick,
   curMonthOnly,
   minDate,
+  maxDate,
 }: DayProps) => {
   const isPassedDate = (renderDate: Date) => {
     if (!minDate) return;
@@ -32,6 +34,17 @@ const Day = ({
       return false;
     }
     return true;
+  };
+
+  const isDueDate = (renderDate: Date) => {
+    if (!maxDate) return;
+
+    const standardDate = getExceptTimeDate(maxDate);
+
+    if (renderDate > standardDate) {
+      return true;
+    }
+    return false;
   };
 
   const renderDate = () => {
@@ -59,6 +72,7 @@ const Day = ({
       const renderingDate = new Date(curYear, month, dateCell);
 
       const isPassed = isPassedDate(renderingDate);
+      const isOvered = isDueDate(renderingDate);
 
       const day = dayjs();
 
@@ -69,7 +83,7 @@ const Day = ({
           key={dateCell}
           curMonthOnly={curMonthOnly}
           isToday={day.isSame(new Date(curYear, month, dateCell), "day")}
-          disabled={!isPassed}
+          disabled={!isPassed || isOvered}
         />
       );
       count++;

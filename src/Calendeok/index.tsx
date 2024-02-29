@@ -8,6 +8,7 @@ type CalenderType = {
   onClick: (date: Date) => void;
   curMonthOnly?: boolean;
   minDate?: Date;
+  maxDate?: Date;
 };
 
 const Calender = ({
@@ -15,6 +16,7 @@ const Calender = ({
   onClick,
   curMonthOnly,
   minDate,
+  maxDate,
 }: CalenderType) => {
   const [curYear, SetCurYear] = useState(selected.getFullYear());
   const [curMonth, setCurMonth] = useState(selected.getMonth());
@@ -35,6 +37,7 @@ const Calender = ({
           onClick={onClick}
           curMonthOnly={curMonthOnly}
           minDate={minDate}
+          maxDate={maxDate}
         />
       </div>
     </>
