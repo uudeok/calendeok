@@ -24,26 +24,24 @@ const Calender = ({
   const [curMonth, setCurMonth] = useState(selected.getMonth());
 
   return (
-    <>
-      <div className="flex flex-col w-96 m-auto">
-        <MonthController
-          setCurMonth={setCurMonth}
-          setCurYear={SetCurYear}
-          curMonth={curMonth}
-          curYear={curYear}
-        />
-        <DayOfWeek />
-        <Day
-          curYear={curYear}
-          curMonth={curMonth}
-          onClick={onClick}
-          curMonthOnly={curMonthOnly}
-          minDate={minDate}
-          maxDate={maxDate}
-          filterDate={filterDate}
-        />
-      </div>
-    </>
+    <div className="flex flex-col w-96 m-auto">
+      <MonthController
+        setCurMonth={setCurMonth}
+        setCurYear={SetCurYear}
+        curMonth={curMonth}
+        curYear={curYear}
+      />
+      <DayOfWeek />
+      <Day
+        curYear={curYear}
+        curMonth={curMonth}
+        onClick={onClick}
+        curMonthOnly={curMonthOnly}
+        minDate={minDate}
+        maxDate={maxDate}
+        filterDate={filterDate}
+      />
+    </div>
   );
 };
 

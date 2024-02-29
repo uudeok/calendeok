@@ -1,3 +1,5 @@
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+
 type NavigateType = {
   curMonth: number;
   curYear: number;
@@ -43,12 +45,16 @@ const MonthController = ({
   };
 
   return (
-    <div className="flex w-96 p-4 border justify-center">
-      <button onClick={handlePrevButton}>«</button>
+    <div className="flex w-96 p-4  justify-center text-lg">
+      <button onClick={handlePrevButton}>
+        <SlArrowLeft />
+      </button>
       <span className="flex-grow text-center">
         {getMonthLabel(curYear, curMonth)}
       </span>
-      <button onClick={handleNextButton}>»</button>
+      <button onClick={handleNextButton}>
+        <SlArrowRight />
+      </button>
     </div>
   );
 };

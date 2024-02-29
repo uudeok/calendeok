@@ -19,6 +19,6 @@ export const getSelectedMonth = (
     case MONTH_LABEL.MONTH_NEXT:
       return curMonth === 11 ? 0 : curMonth + 1;
     default:
-      throw new Error("error : Calendar.invalidMonthName");
+      throw new Error("error : Calendar.invalid Month Name");
   }
 };
