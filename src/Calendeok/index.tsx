@@ -9,6 +9,7 @@ type CalenderType = {
   curMonthOnly?: boolean;
   minDate?: Date;
   maxDate?: Date;
+  filterDate?: (date: Date) => boolean;
 };
 
 const Calender = ({
@@ -17,6 +18,7 @@ const Calender = ({
   curMonthOnly,
   minDate,
   maxDate,
+  filterDate,
 }: CalenderType) => {
   const [curYear, SetCurYear] = useState(selected.getFullYear());
   const [curMonth, setCurMonth] = useState(selected.getMonth());
@@ -38,6 +40,7 @@ const Calender = ({
           curMonthOnly={curMonthOnly}
           minDate={minDate}
           maxDate={maxDate}
+          filterDate={filterDate}
         />
       </div>
     </>

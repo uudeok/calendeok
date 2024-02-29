@@ -22,13 +22,13 @@ const DateCell = ({
   const hover =
     "rounded-full transition duration-300 ease-in-out hover:bg-regal-blue hover:text-white";
 
+  const condition = disabled ? "text-gray-400" : `text-black ${hover}`;
+
   return (
     <td className={`py-3 relative ${disabled && "bg-zinc-50"}`}>
       {curMonthOnly && monthLabel !== MONTH_LABEL.MONTH_CURRENT ? null : (
         <button
-          className={`w-12 h-12 flex justify-center items-center text-center relative ${
-            !disabled && hover
-          }  ${labelColor}`}
+          className={`w-12 h-12 flex justify-center items-center text-center relative ${condition} ${labelColor}`}
           data-name={monthLabel}
           disabled={disabled}
         >
