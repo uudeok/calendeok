@@ -26,6 +26,7 @@ const App = () => {
       minDate={new Date()}
       maxDate={laterTwoWeeks}
       filterDate={isOpenDay}
+      showTimePicker={true}
     />
   );
 };

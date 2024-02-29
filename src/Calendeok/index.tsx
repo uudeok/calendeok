@@ -2,6 +2,7 @@ import { useState } from "react";
 import DayOfWeek from "./DayOfWeek";
 import Day from "./Day";
 import MonthController from "./MonthController";
+import TimePicker from "../TimePicker";
 
 type CalenderType = {
   selected: Date;
@@ -10,6 +11,7 @@ type CalenderType = {
   minDate?: Date;
   maxDate?: Date;
   filterDate?: (date: Date) => boolean;
+  showTimePicker?: boolean;
 };
 
 const Calender = ({
@@ -19,6 +21,7 @@ const Calender = ({
   minDate,
   maxDate,
   filterDate,
+  showTimePicker,
 }: CalenderType) => {
   const [curYear, SetCurYear] = useState(selected.getFullYear());
   const [curMonth, setCurMonth] = useState(selected.getMonth());
@@ -41,6 +44,7 @@ const Calender = ({
         maxDate={maxDate}
         filterDate={filterDate}
       />
+      {showTimePicker && <TimePicker timeInterval={30} />}
     </div>
   );
 };
