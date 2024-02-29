@@ -1,16 +1,29 @@
 import { generateTimeArray } from "../Util/time";
 import DropDown from "./DropDown";
 
-type TimePickerType = {
+export type TimePickerType = {
   timeInterval?: number;
+  placeholder?: string;
+  onClickTime: (time: string) => void;
+  selectedTime: string;
 };
 
-const TimePicker = ({ timeInterval = 60 }: TimePickerType) => {
+const TimePicker = ({
+  timeInterval = 60,
+  placeholder,
+  onClickTime,
+  selectedTime,
+}: TimePickerType) => {
   const timeList = generateTimeArray(timeInterval);
 
   return (
     <div>
-      <DropDown timeList={timeList} />
+      <DropDown
+        timeList={timeList}
+        placeholder={placeholder}
+        onClickTime={onClickTime}
+        selectedTime={selectedTime}
+      />
     </div>
   );
 };
