@@ -6,6 +6,8 @@ export type TimePickerType = {
   placeholder?: string;
   onClickTime: (time: string) => void;
   selectedTime: string;
+  minTime?: string;
+  maxTime?: string;
 };
 
 const TimePicker = ({
@@ -13,8 +15,20 @@ const TimePicker = ({
   placeholder,
   onClickTime,
   selectedTime,
+  minTime,
+  maxTime,
 }: TimePickerType) => {
-  const timeList = generateTimeArray(timeInterval);
+  let timeList = generateTimeArray(timeInterval);
+
+  if (minTime) {
+    timeList = timeList.filter((time) => time.value >= minTime);
+  }
+
+  if (maxTime) {
+    timeList = timeList.filter((time) => time.value <= maxTime);
+  }
+
+  // console.log(timeList);
 
   return (
     <div>

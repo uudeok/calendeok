@@ -36,6 +36,9 @@ const App = () => {
       showTimePicker={true}
       onClickTime={handleTime}
       selectedTime={time}
+      timeInterval={30}
+      minTime="09:00"
+      maxTime="21:00"
     />
   );
 };

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TimeListType } from "../@types";
+import DynamicRender from "../common/DynamicRender";
 
 type DropDownType = {
   timeList: TimeListType[];
@@ -28,6 +29,15 @@ const DropDown = ({
     setIsFolded(false);
   };
 
+  const renderTime = (time: TimeListType) => (
+    <li
+      key={time.label}
+      className={`h-14 p-2 border text-center justify-center}`}
+    >
+      {time.label}
+    </li>
+  );
+
   return (
     <>
       <div
@@ -39,11 +49,7 @@ const DropDown = ({
 
       {isFolded && (
         <ul className="h-80 overflow-auto" onClick={handleTime}>
-          {timeList.map((time) => (
-            <li key={time.label} className="h-14 p-2 border text-center">
-              {time.label}
-            </li>
-          ))}
+          <DynamicRender data={timeList} renderItem={renderTime} />
         </ul>
       )}
     </>
