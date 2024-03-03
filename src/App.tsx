@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Time } from "./@types";
 import Calender from "./Calendeok";
 import dayjs from "dayjs";
 
@@ -25,6 +26,17 @@ const App = () => {
     return day !== SUNDAY;
   };
 
+  const filterTime = (time: Time) => {
+    const current = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate();
+    const [hour, minutes] = time.value.split(":");
+    const selected = new Date(year, month, day, Number(hour), Number(minutes));
+
+    return current < selected;
+  };
+
   return (
     <Calender
       selected={date}
@@ -32,13 +44,14 @@ const App = () => {
       curMonthOnly={false}
       minDate={new Date()}
       maxDate={laterTwoWeeks}
-      filterDate={isOpenDay}
+      // filterDate={isOpenDay}
       showTimePicker={true}
       onClickTime={handleTime}
       selectedTime={time}
       timeInterval={30}
       minTime="09:00"
       maxTime="21:00"
+      filterTime={filterTime}
     />
   );
 };

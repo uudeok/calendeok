@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { TimeListType } from "../@types";
+import { Time } from "../@types";
 import DynamicRender from "../common/DynamicRender";
 
 type DropDownType = {
-  timeList: TimeListType[];
+  timeList: Time[];
   placeholder?: string;
   onClickTime: (time: string) => void;
   selectedTime: string;
+  filterTime?: (time: Time) => boolean;
 };
 
 const DropDown = ({
@@ -14,6 +15,7 @@ const DropDown = ({
   placeholder,
   onClickTime,
   selectedTime,
+  filterTime,
 }: DropDownType) => {
   const [isFolded, setIsFolded] = useState(false);
 
@@ -29,14 +31,23 @@ const DropDown = ({
     setIsFolded(false);
   };
 
-  const renderTime = (time: TimeListType) => (
-    <li
-      key={time.label}
-      className={`h-14 p-2 border text-center justify-center}`}
-    >
-      {time.label}
-    </li>
-  );
+  const renderTime = (time: Time) => {
+    const result = filterTime ? filterTime(time) : true;
+
+    return (
+      <li
+        key={time.label}
+        onClick={handleTime}
+        className={`h-14 p-2 border text-center ${
+          result
+            ? "hover:bg-slate-200 cursor-pointer"
+            : "bg-zinc-50 pointer-events-none text-gray-400"
+        }`}
+      >
+        {time.label}
+      </li>
+    );
+  };
 
   return (
     <>
@@ -48,7 +59,7 @@ const DropDown = ({
       </div>
 
       {isFolded && (
-        <ul className="h-80 overflow-auto" onClick={handleTime}>
+        <ul className="h-80 overflow-auto">
           <DynamicRender data={timeList} renderItem={renderTime} />
         </ul>
       )}

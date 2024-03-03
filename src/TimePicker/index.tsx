@@ -1,3 +1,4 @@
+import { Time } from "../@types";
 import { generateTimeArray } from "../Util/time";
 import DropDown from "./DropDown";
 
@@ -8,6 +9,7 @@ export type TimePickerType = {
   selectedTime: string;
   minTime?: string;
   maxTime?: string;
+  filterTime?: (time: Time) => boolean;
 };
 
 const TimePicker = ({
@@ -17,6 +19,7 @@ const TimePicker = ({
   selectedTime,
   minTime,
   maxTime,
+  filterTime,
 }: TimePickerType) => {
   let timeList = generateTimeArray(timeInterval);
 
@@ -37,6 +40,7 @@ const TimePicker = ({
         placeholder={placeholder}
         onClickTime={onClickTime}
         selectedTime={selectedTime}
+        filterTime={filterTime}
       />
     </div>
   );

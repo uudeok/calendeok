@@ -50,7 +50,7 @@ const Day = ({
   };
 
   const isFilteredDate = (renderDate: Date) => {
-    if (!filterDate) return;
+    if (!filterDate) return true;
 
     return filterDate(renderDate);
   };

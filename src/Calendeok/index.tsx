@@ -3,6 +3,7 @@ import DayOfWeek from "./DayOfWeek";
 import Day from "./Day";
 import MonthController from "./MonthController";
 import TimePicker, { TimePickerType } from "../TimePicker";
+import { Time } from "../@types";
 
 type CalenderType = {
   selected: Date;
@@ -15,6 +16,7 @@ type CalenderType = {
   timeInterval?: number;
   minTime?: string;
   maxTime?: string;
+  filterTime?: (time: Time) => boolean;
 };
 
 type CalendarWithTimePicker = CalenderType & TimePickerType;
@@ -40,6 +42,7 @@ const Calender = ({
   minTime,
   maxTime,
   timeInterval,
+  filterTime,
 }: CombinedProps) => {
   const [curYear, SetCurYear] = useState(selected.getFullYear());
   const [curMonth, setCurMonth] = useState(selected.getMonth());
@@ -70,6 +73,7 @@ const Calender = ({
           selectedTime={selectedTime}
           minTime={minTime}
           maxTime={maxTime}
+          filterTime={filterTime}
         />
       )}
     </div>
