@@ -1,15 +1,26 @@
+import DynamicRender from "../common/DynamicRender";
+
 const daysInKorean = ["일", "월", "화", "수", "목", "금", "토"];
 
-const DayOfWeek = () => {
+type DayOfWeekType = {
+  dayCaption?: string[];
+};
+
+const DayOfWeek = ({ dayCaption }: DayOfWeekType) => {
+  const renderDay = (day: string) => (
+    <th key={day} className="font-normal w-5">
+      {day}
+    </th>
+  );
+
   return (
     <table>
       <tbody>
         <tr>
-          {daysInKorean.map((day) => (
-            <th key={day} className="font-normal">
-              {day}
-            </th>
-          ))}
+          <DynamicRender
+            data={dayCaption ? dayCaption : daysInKorean}
+            renderItem={renderDay}
+          />
         </tr>
       </tbody>
     </table>

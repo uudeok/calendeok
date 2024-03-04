@@ -19,6 +19,7 @@ type CalenderType = {
   filterTime?: (time: Time) => boolean;
   placeholder?: string;
   excludeTimes?: Date[];
+  dayCaption?: string[];
 };
 
 type CalendarWithTimePicker = CalenderType & TimePickerType;
@@ -48,6 +49,7 @@ const Calender = ({
   filterTime,
   placeholder,
   excludeTimes,
+  dayCaption,
 }: CombinedProps) => {
   const [curYear, SetCurYear] = useState(selected.getFullYear());
   const [curMonth, setCurMonth] = useState(selected.getMonth());
@@ -60,7 +62,7 @@ const Calender = ({
         curMonth={curMonth}
         curYear={curYear}
       />
-      <DayOfWeek />
+      <DayOfWeek dayCaption={dayCaption} />
       <Day
         curYear={curYear}
         curMonth={curMonth}
