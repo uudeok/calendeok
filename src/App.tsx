@@ -12,6 +12,7 @@ const App = () => {
   const handleDate = (date: Date) => {
     console.log("date", date);
     setDate(date);
+    setTime("");
   };
 
   const handleTime = (time: string) => {

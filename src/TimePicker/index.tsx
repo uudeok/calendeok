@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { Time } from "../@types";
 import { adjustSelectable, generateTimeArray } from "../Util/time";
 import DropDown from "./DropDown";
@@ -26,6 +25,7 @@ const TimePicker = ({
   selected,
   excludeTimes,
 }: TimePickerType) => {
+  // <--! interval 단위로 시간 배열을 만들어준다 !-->
   let timeList = generateTimeArray(timeInterval, selected);
 
   if (minTime) {
@@ -35,6 +35,7 @@ const TimePicker = ({
   if (maxTime) {
     timeList = timeList.filter((time) => time.label <= maxTime);
   }
+
   if (excludeTimes) {
     timeList = adjustSelectable(timeList, excludeTimes);
   }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Time } from "../@types";
 import DynamicRender from "../common/DynamicRender";
+import ConditionalDisplay from "../common/ConditionalDisplay";
 
 type DropDownType = {
   timeList: Time[];
@@ -19,7 +20,7 @@ const DropDown = ({
 }: DropDownType) => {
   const [isFolded, setIsFolded] = useState(false);
 
-  const handleFolder = (e: React.MouseEvent) => {
+  const handleFolder = () => {
     setIsFolded((prev) => !prev);
   };
 
@@ -56,11 +57,11 @@ const DropDown = ({
         {selectedTime ? selectedTime : placeholder}
       </div>
 
-      {isFolded && (
+      <ConditionalDisplay condition={isFolded}>
         <ul className="h-80 overflow-auto">
           <DynamicRender data={timeList} renderItem={renderTime} />
         </ul>
-      )}
+      </ConditionalDisplay>
     </>
   );
 };
