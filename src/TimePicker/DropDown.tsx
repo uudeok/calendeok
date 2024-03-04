@@ -30,14 +30,14 @@ const DropDown = ({
 
   const renderTime = (time: Time) => {
     const result = filterTime ? filterTime(time) : true;
-    console.log(time);
 
     return (
       <li
         key={time.label}
         onClick={() => handleTime(time.label)}
-        className={`h-14 p-2 border text-center ${
-          result
+        className={`h-14 p-2 border text-center
+        ${
+          result && time.selectable
             ? "hover:bg-slate-200 cursor-pointer"
             : "bg-zinc-50 pointer-events-none text-gray-400"
         }`}

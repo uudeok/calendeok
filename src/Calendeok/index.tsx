@@ -18,6 +18,7 @@ type CalenderType = {
   maxTime?: string;
   filterTime?: (time: Time) => boolean;
   placeholder?: string;
+  excludeTimes?: Date[];
 };
 
 type CalendarWithTimePicker = CalenderType & TimePickerType;
@@ -46,6 +47,7 @@ const Calender = ({
   timeInterval,
   filterTime,
   placeholder,
+  excludeTimes,
 }: CombinedProps) => {
   const [curYear, SetCurYear] = useState(selected.getFullYear());
   const [curMonth, setCurMonth] = useState(selected.getMonth());
@@ -79,6 +81,7 @@ const Calender = ({
           maxTime={maxTime}
           filterTime={filterTime}
           selected={selected}
+          excludeTimes={excludeTimes}
         />
       )}
     </div>

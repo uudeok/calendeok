@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { Time } from "../@types";
-import { generateTimeArray } from "../Util/time";
+import { adjustSelectable, generateTimeArray } from "../Util/time";
 import DropDown from "./DropDown";
 
 export type TimePickerType = {
@@ -12,6 +12,7 @@ export type TimePickerType = {
   maxTime?: string;
   filterTime?: (time: Time) => boolean;
   selected: Date;
+  excludeTimes?: Date[];
 };
 
 const TimePicker = ({
@@ -23,6 +24,7 @@ const TimePicker = ({
   maxTime,
   filterTime,
   selected,
+  excludeTimes,
 }: TimePickerType) => {
   let timeList = generateTimeArray(timeInterval, selected);
 
@@ -32,6 +34,9 @@ const TimePicker = ({
 
   if (maxTime) {
     timeList = timeList.filter((time) => time.label <= maxTime);
+  }
+  if (excludeTimes) {
+    timeList = adjustSelectable(timeList, excludeTimes);
   }
 
   return (

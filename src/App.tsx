@@ -49,6 +49,12 @@ const App = () => {
       maxTime="21:00"
       filterTime={filterTime}
       placeholder="시간 선택"
+      excludeTimes={[
+        new Date(date.setHours(12, 0, 0)),
+        new Date(date.setHours(12, 30, 0)),
+        new Date(date.setHours(13, 0, 0)),
+        new Date(2024, 2, 9, 15, 0, 0),
+      ]}
     />
   );
 };
