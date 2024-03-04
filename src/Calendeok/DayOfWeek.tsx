@@ -8,7 +8,7 @@ type DayOfWeekType = {
 
 const DayOfWeek = ({ dayCaption }: DayOfWeekType) => {
   const renderDay = (day: string) => (
-    <th key={day} className="font-normal w-5">
+    <th key={day} className="font-normal  w-14">
       {day}
     </th>
   );
@@ -16,7 +16,7 @@ const DayOfWeek = ({ dayCaption }: DayOfWeekType) => {
   return (
     <table>
       <tbody>
-        <tr>
+        <tr className="w-full">
           <DynamicRender
             data={dayCaption ? dayCaption : daysInKorean}
             renderItem={renderDay}

@@ -15,6 +15,6 @@ export const getDateLabelColor = (monthLabel: MONTH_LABEL_VALUES) => {
   }
 };
 
-export const getDateWithoutTime = (date: Date) => {
+export const resetTimeOfDate = (date: Date) => {
   return new Date(date.setHours(0, 0, 0, 0));
 };

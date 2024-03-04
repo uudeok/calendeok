@@ -33,6 +33,8 @@ const App = () => {
     return current < selected;
   };
 
+  const dayInEnglish = ["S", "M", "T", "W", "T", "F", "S"];
+
   return (
     <Calender
       selected={date}
@@ -55,6 +57,7 @@ const App = () => {
         new Date(date.setHours(13, 0, 0)),
         new Date(2024, 2, 9, 15, 0, 0),
       ]}
+      // dayCaption={dayInEnglish}
     />
   );
 };

@@ -9,6 +9,9 @@ module.exports = {
       fontSize: {
         sm: "0.7rem",
       },
+      width: {
+        14: "14.28%",
+      },
     },
   },
   plugins: [],

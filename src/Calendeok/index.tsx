@@ -61,6 +61,8 @@ const Calender = ({
         setCurYear={SetCurYear}
         curMonth={curMonth}
         curYear={curYear}
+        minDate={minDate}
+        maxDate={maxDate}
       />
       <DayOfWeek dayCaption={dayCaption} />
       <Day

@@ -1,10 +1,13 @@
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import ConditionalDisplay from "../common/ConditionalDisplay";
 
 type NavigateType = {
   curMonth: number;
   curYear: number;
   setCurMonth: React.Dispatch<React.SetStateAction<number>>;
   setCurYear: React.Dispatch<React.SetStateAction<number>>;
+  minDate?: Date;
+  maxDate?: Date;
 };
 
 const MonthController = ({
@@ -12,7 +15,23 @@ const MonthController = ({
   curYear,
   setCurMonth,
   setCurYear,
+  minDate,
+  maxDate,
 }: NavigateType) => {
+  const handleNextController = () => {
+    if (!maxDate) return true;
+    const maxMonth = maxDate.getMonth();
+
+    return curMonth < maxMonth;
+  };
+
+  const handlePrevController = () => {
+    if (!minDate) return true;
+    const minMonth = minDate.getMonth();
+
+    return curMonth > minMonth;
+  };
+
   const handlePrevButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -46,15 +65,19 @@ const MonthController = ({
 
   return (
     <div className="flex w-96 p-4  justify-center text-lg">
-      <button onClick={handlePrevButton}>
-        <SlArrowLeft />
-      </button>
+      <ConditionalDisplay condition={handlePrevController()}>
+        <button onClick={handlePrevButton}>
+          <SlArrowLeft />
+        </button>
+      </ConditionalDisplay>
       <span className="flex-grow text-center">
         {getMonthLabel(curYear, curMonth)}
       </span>
-      <button onClick={handleNextButton}>
-        <SlArrowRight />
-      </button>
+      <ConditionalDisplay condition={handleNextController()}>
+        <button onClick={handleNextButton}>
+          <SlArrowRight />
+        </button>
+      </ConditionalDisplay>
     </div>
   );
 };

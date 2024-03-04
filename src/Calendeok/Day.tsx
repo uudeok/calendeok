@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { MONTH_LABEL_VALUES } from "../@types";
 import { calculateMonthInfo, getSelectedMonth } from "../Util/month";
 import { MONTH_LABEL } from "../const";
-import { getDateWithoutTime } from "../Util/date";
+import { resetTimeOfDate } from "../Util/date";
 
 type DayProps = {
   curYear: number;
@@ -29,10 +29,10 @@ const Day = ({
   selectedDate,
 }: DayProps) => {
   const isPassedDate = (renderDate: Date) => {
-    if (!minDate) return;
+    if (!minDate) return true;
 
     // <--! Date 로 비교할 경우, 시간도 비교하기 때문에 날짜만 비교하기 위해 시간을 초기화해야함 !-->
-    const standardDate = getDateWithoutTime(minDate);
+    const standardDate = resetTimeOfDate(minDate);
 
     if (renderDate < standardDate) {
       return false;
@@ -41,14 +41,14 @@ const Day = ({
   };
 
   const isDueDate = (renderDate: Date) => {
-    if (!maxDate) return;
+    if (!maxDate) return true;
 
-    const standardDate = getDateWithoutTime(maxDate);
+    const standardDate = resetTimeOfDate(maxDate);
 
     if (renderDate > standardDate) {
-      return true;
+      return false;
     }
-    return false;
+    return true;
   };
 
   const isFilteredDate = (renderDate: Date) => {
@@ -96,7 +96,7 @@ const Day = ({
           key={dateCell}
           curMonthOnly={curMonthOnly}
           isToday={day.isSame(new Date(curYear, month, dateCell), "day")}
-          disabled={!isPassed || isOvered || !isFiltered}
+          disabled={!isPassed || !isOvered || !isFiltered}
           selected={selectDay === renderDay}
         />
       );
