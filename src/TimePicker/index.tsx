@@ -34,8 +34,6 @@ const TimePicker = ({
     timeList = timeList.filter((time) => time.label <= maxTime);
   }
 
-  console.log(timeList);
-
   return (
     <div>
       <DropDown

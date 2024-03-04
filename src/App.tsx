@@ -27,12 +27,8 @@ const App = () => {
   };
 
   const filterTime = (time: Time) => {
-    const current = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const day = date.getDate();
-    const [hour, minutes] = time.label.split(":");
-    const selected = new Date(year, month, day, Number(hour), Number(minutes));
+    const current = new Date().getTime();
+    const selected = new Date(time.value).getTime();
 
     return current < selected;
   };
@@ -52,6 +48,7 @@ const App = () => {
       minTime="09:00"
       maxTime="21:00"
       filterTime={filterTime}
+      placeholder="시간 선택"
     />
   );
 };

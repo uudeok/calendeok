@@ -23,21 +23,19 @@ const DropDown = ({
     setIsFolded((prev) => !prev);
   };
 
-  const handleTime = (e: React.MouseEvent) => {
-    const item = e.target as HTMLElement;
-    const selectedTime = item.innerText;
-
-    onClickTime(selectedTime);
+  const handleTime = (time: string) => {
+    onClickTime(time);
     setIsFolded(false);
   };
 
   const renderTime = (time: Time) => {
     const result = filterTime ? filterTime(time) : true;
+    console.log(time);
 
     return (
       <li
         key={time.label}
-        onClick={handleTime}
+        onClick={() => handleTime(time.label)}
         className={`h-14 p-2 border text-center ${
           result
             ? "hover:bg-slate-200 cursor-pointer"

@@ -17,6 +17,7 @@ type CalenderType = {
   minTime?: string;
   maxTime?: string;
   filterTime?: (time: Time) => boolean;
+  placeholder?: string;
 };
 
 type CalendarWithTimePicker = CalenderType & TimePickerType;
@@ -44,6 +45,7 @@ const Calender = ({
   maxTime,
   timeInterval,
   filterTime,
+  placeholder,
 }: CombinedProps) => {
   const [curYear, SetCurYear] = useState(selected.getFullYear());
   const [curMonth, setCurMonth] = useState(selected.getMonth());
@@ -70,7 +72,7 @@ const Calender = ({
       {showTimePicker && (
         <TimePicker
           timeInterval={timeInterval}
-          placeholder="시간 선택"
+          placeholder={placeholder}
           onClickTime={onClickTime}
           selectedTime={selectedTime}
           minTime={minTime}
