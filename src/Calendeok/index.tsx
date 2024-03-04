@@ -25,6 +25,7 @@ type CalendarWithOutTimePicker = CalenderType & {
   showTimePicker?: false;
   onClickTime?: never;
   selectedTime?: never;
+  selectedDate?: never;
 };
 
 type CombinedProps = CalendarWithTimePicker | CalendarWithOutTimePicker;
@@ -75,6 +76,7 @@ const Calender = ({
           minTime={minTime}
           maxTime={maxTime}
           filterTime={filterTime}
+          selected={selected}
         />
       )}
     </div>

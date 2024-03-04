@@ -6,6 +6,6 @@ export type MONTH_LABEL_VALUES = MONTH_LABEL_TYPE[MONTH_LABEL_KEYS];
 
 export type Time = {
   label: string;
-  value: string;
+  value: Date;
   selectable: boolean;
 };

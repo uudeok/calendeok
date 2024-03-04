@@ -31,7 +31,7 @@ const App = () => {
     const year = date.getFullYear();
     const month = date.getMonth();
     const day = date.getDate();
-    const [hour, minutes] = time.value.split(":");
+    const [hour, minutes] = time.label.split(":");
     const selected = new Date(year, month, day, Number(hour), Number(minutes));
 
     return current < selected;
