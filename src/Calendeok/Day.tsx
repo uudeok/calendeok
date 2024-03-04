@@ -13,6 +13,7 @@ type DayProps = {
   minDate?: Date;
   maxDate?: Date;
   filterDate?: (date: Date) => boolean;
+  selectedDate: Date;
 };
 
 const TOTAL_DAYS = 42;
@@ -25,6 +26,7 @@ const Day = ({
   minDate,
   maxDate,
   filterDate,
+  selectedDate,
 }: DayProps) => {
   const isPassedDate = (renderDate: Date) => {
     if (!minDate) return;
@@ -82,8 +84,10 @@ const Day = ({
       const isPassed = isPassedDate(renderingDate);
       const isOvered = isDueDate(renderingDate);
       const isFiltered = isFilteredDate(renderingDate);
-
       const day = dayjs();
+
+      const renderDay = dayjs(renderingDate).format("YYYY-MM-DD");
+      const selectDay = dayjs(selectedDate).format("YYYY-MM-DD");
 
       cells.push(
         <DateCell
@@ -93,6 +97,7 @@ const Day = ({
           curMonthOnly={curMonthOnly}
           isToday={day.isSame(new Date(curYear, month, dateCell), "day")}
           disabled={!isPassed || isOvered || !isFiltered}
+          selected={selectDay === renderDay}
         />
       );
       count++;

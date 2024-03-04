@@ -64,6 +64,7 @@ const Calender = ({
         minDate={minDate}
         maxDate={maxDate}
         filterDate={filterDate}
+        selectedDate={selected}
       />
       {showTimePicker && (
         <TimePicker

@@ -44,7 +44,7 @@ const App = () => {
       curMonthOnly={false}
       minDate={new Date()}
       maxDate={laterTwoWeeks}
-      // filterDate={isOpenDay}
+      filterDate={isOpenDay}
       showTimePicker={true}
       onClickTime={handleTime}
       selectedTime={time}
