@@ -45,7 +45,7 @@ const App = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center w-full h-full bg-blue-100">
       <h2 className="text-3xl text-orange-600 mb-4 mt-4">Calendeok</h2>
       <input
         className="border border-black p-2 text-center mb-4"
