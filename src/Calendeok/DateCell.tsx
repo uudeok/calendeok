@@ -23,10 +23,12 @@ const DateCell = ({
   const labelColor = getDateLabelColor(monthLabel);
 
   return (
-    <td className={`py-3 relative ${disabled && "bg-zinc-50"}`}>
+    <td className="py-3 relative">
       {curMonthOnly && monthLabel !== MONTH_LABEL.MONTH_CURRENT ? null : (
         <button
-          className={`datecell-btn ${!disabled && "hover-base"} ${labelColor} ${
+          className={`datecell-btn ${
+            disabled ? "text-gray-400" : "hover-base"
+          } ${labelColor} ${
             selected && "rounded-full bg-regal-blue text-white"
           }`}
           data-name={monthLabel}

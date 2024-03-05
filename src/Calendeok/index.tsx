@@ -55,7 +55,7 @@ const Calender = ({
   const [curMonth, setCurMonth] = useState(selected.getMonth());
 
   return (
-    <div className="flex flex-col w-96 m-auto">
+    <div className="flex flex-col w-96 m-auto rounded-md border mt-10">
       <MonthController
         setCurMonth={setCurMonth}
         setCurYear={SetCurYear}

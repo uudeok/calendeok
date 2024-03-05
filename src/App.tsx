@@ -20,7 +20,7 @@ const App = () => {
     setTime(time);
   };
 
-  const laterTwoWeeks = dayjs(new Date()).add(14, "day").toDate();
+  const laterOneMonth = dayjs(new Date()).add(1, "month").toDate();
 
   const isOpenDay = (date: Date) => {
     const day = new Date(date).getDay();
@@ -42,7 +42,7 @@ const App = () => {
       onClick={handleDate}
       curMonthOnly={false}
       minDate={new Date()}
-      maxDate={laterTwoWeeks}
+      maxDate={laterOneMonth}
       filterDate={isOpenDay}
       showTimePicker={true}
       onClickTime={handleTime}
@@ -58,7 +58,6 @@ const App = () => {
         new Date(date.setHours(13, 0, 0)),
         new Date(2024, 2, 9, 15, 0, 0),
       ]}
-      // dayCaption={dayInEnglish}
     />
   );
 };
