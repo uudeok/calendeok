@@ -1,5 +1,5 @@
 import { Time } from "../@types";
-import { adjustSelectable, generateTimeArray } from "../Util/time";
+import { adjustSelectable, generateTimeArray } from "../util/time";
 import DropDown from "./DropDown";
 
 export type TimePickerType = {

@@ -1,6 +1,6 @@
 import { MONTH_LABEL_VALUES } from "../@types";
 import { MONTH_LABEL } from "../const";
-import { getDateLabelColor } from "../Util/date";
+import { getDateLabelColor } from "../util/date";
 import Today from "./Today";
 
 type DateCellType = {

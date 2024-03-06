@@ -1,9 +1,9 @@
 import DateCell from "./DateCell";
 import dayjs from "dayjs";
 import { MONTH_LABEL_VALUES } from "../@types";
-import { calculateMonthInfo, getSelectedMonth } from "../Util/month";
+import { calculateMonthInfo, getSelectedMonth } from "../util/month";
 import { MONTH_LABEL } from "../const";
-import { resetTimeOfDate } from "../Util/date";
+import { resetTimeOfDate } from "../util/date";
 
 type DayProps = {
   curYear: number;
