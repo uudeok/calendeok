@@ -41,13 +41,12 @@ var App = function App() {
     _useState6 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState5, 2),
     isOpen = _useState6[0],
     setIsOpen = _useState6[1];
+  var calendarRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
   var handleDate = function handleDate(date) {
-    console.log("date", date);
     setDate(date);
     setTime("");
   };
   var handleTime = function handleTime(time) {
-    console.log("time", time);
     setTime(time);
   };
   var laterOneMonth = dayjs__WEBPACK_IMPORTED_MODULE_3___default()(new Date()).add(1, "month").toDate();
@@ -60,41 +59,50 @@ var App = function App() {
     var selected = new Date(time.value).getTime();
     return current < selected;
   };
-  var dayInEnglish = ["S", "M", "T", "W", "T", "F", "S"];
   var pickDate = dayjs__WEBPACK_IMPORTED_MODULE_3___default()(date).format("YYYY-MM-DD");
-  var handleCalender = function handleCalender() {
+  var handleCalendarClick = function handleCalendarClick(e) {
+    // 달력 영역 외의 영역 클릭인지 확인
+    if (calendarRef.current && !calendarRef.current.contains(e.target)) {
+      setIsOpen(false); // isOpen 상태 변경
+    }
+  };
+  var handleCalendarToggle = function handleCalendarToggle() {
     setIsOpen(function (prev) {
       return !prev;
     });
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    className: "flex flex-col items-center justify-center w-full h-full bg-blue-100",
+    className: "flex flex-col items-center w-full h-full bg-blue-100",
+    onClick: handleCalendarClick,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
       className: "text-3xl text-orange-600 mb-4 mt-4",
       children: "Calendeok"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
       className: "border border-black p-2 text-center mb-4",
       value: "".concat(pickDate, " ").concat(time),
-      onClick: handleCalender,
+      onClick: handleCalendarToggle,
       readOnly: true
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_ConditionalDisplay__WEBPACK_IMPORTED_MODULE_4__["default"], {
       condition: isOpen,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Calendeok__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        selected: date,
-        onClick: handleDate,
-        curMonthOnly: false,
-        minDate: new Date(),
-        maxDate: laterOneMonth,
-        filterDate: isOpenDay,
-        showTimePicker: true,
-        onClickTime: handleTime,
-        selectedTime: time,
-        timeInterval: 30,
-        minTime: "09:00",
-        maxTime: "21:00",
-        filterTime: filterTime,
-        placeholder: "\uC2DC\uAC04 \uC120\uD0DD",
-        excludeTimes: [new Date(date.setHours(12, 0, 0)), new Date(date.setHours(12, 30, 0)), new Date(date.setHours(13, 0, 0)), new Date(2024, 2, 9, 15, 0, 0)]
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        ref: calendarRef,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Calendeok__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          selected: date,
+          onClick: handleDate,
+          curMonthOnly: false,
+          minDate: new Date(),
+          maxDate: laterOneMonth,
+          filterDate: isOpenDay,
+          showTimePicker: true,
+          onClickTime: handleTime,
+          selectedTime: time,
+          timeInterval: 30,
+          minTime: "09:00",
+          maxTime: "21:00",
+          filterTime: filterTime,
+          placeholder: "\uC2DC\uAC04 \uC120\uD0DD",
+          excludeTimes: [new Date(date.setHours(12, 0, 0)), new Date(date.setHours(12, 30, 0)), new Date(date.setHours(13, 0, 0)), new Date(2024, 2, 9, 15, 0, 0)]
+        })
       })
     })]
   });

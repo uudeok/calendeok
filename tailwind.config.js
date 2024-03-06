@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "regal-blue": "#1773EF",
+        "bright-blue": "#1773EF",
+        "light-gray": "#D6E1E5",
       },
       fontSize: {
         sm: "0.7rem",

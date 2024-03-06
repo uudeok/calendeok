@@ -51,7 +51,7 @@ const DropDown = ({
   return (
     <>
       <div
-        className="w-auto h-14 text-lg bg-regal-blue rounded-md cursor-pointer relative flex items-center justify-center text-white"
+        className="w-auto h-14 text-lg bg-bright-blue rounded-md cursor-pointer relative flex items-center justify-center text-white"
         onClick={handleFolder}
       >
         {selectedTime ? selectedTime : placeholder}

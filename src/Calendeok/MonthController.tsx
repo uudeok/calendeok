@@ -64,7 +64,7 @@ const MonthController = ({
   };
 
   return (
-    <div className="flex w-96 p-4  justify-center text-lg">
+    <div className="flex w-96 p-5 justify-center text-lg ">
       <ConditionalDisplay condition={handlePrevController()}>
         <button onClick={handlePrevButton}>
           <SlArrowLeft />

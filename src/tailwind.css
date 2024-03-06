@@ -4,7 +4,7 @@
 
 @layer components {
   .hover-base {
-    @apply rounded-full text-black transition duration-300 ease-in-out hover:bg-regal-blue hover:text-white;
+    @apply rounded-full text-black transition duration-300 ease-in-out hover:bg-bright-blue hover:text-white;
   }
 
   .datecell-btn {

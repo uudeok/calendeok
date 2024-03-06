@@ -3,6 +3,7 @@ import { Time } from "./@types";
 import Calender from "./Calendeok";
 import dayjs from "dayjs";
 import ConditionalDisplay from "./common/ConditionalDisplay";
+import Example from "./Example";
 
 const SUNDAY = 0;
 
@@ -52,10 +53,14 @@ const App = () => {
 
   return (
     <div
-      className="flex flex-col items-center w-full h-full bg-blue-100"
+      className="flex flex-col items-center w-full h-full bg-light-gray"
       onClick={handleCalendarClick}
     >
-      <h2 className="text-3xl text-orange-600 mb-4 mt-4">Calendeok</h2>
+      <Example />
+
+      <h2 className="text-3xl text-orange-600 mb-4 mt-4">
+        DatePicker & TimePicker
+      </h2>
       <input
         className="border border-black p-2 text-center mb-4"
         value={`${pickDate} ${time}`}

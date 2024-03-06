@@ -29,7 +29,7 @@ const DateCell = ({
           className={`datecell-btn ${
             disabled ? "text-gray-400" : "hover-base"
           } ${labelColor} ${
-            selected && "rounded-full bg-regal-blue text-white"
+            selected && "rounded-full bg-bright-blue text-white"
           }`}
           data-name={monthLabel}
           disabled={disabled}
