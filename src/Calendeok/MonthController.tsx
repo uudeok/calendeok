@@ -1,5 +1,4 @@
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import ConditionalDisplay from "../common/ConditionalDisplay";
 
 type NavigateType = {
   curMonth: number;
@@ -63,21 +62,28 @@ const MonthController = ({
     return monthLabel;
   };
 
+  const isVisiblePrevBtn = handlePrevController();
+  const isVisibleNextBtn = handleNextController();
+
   return (
-    <div className="flex w-96 p-5 justify-center text-lg ">
-      <ConditionalDisplay condition={handlePrevController()}>
-        <button onClick={handlePrevButton}>
-          <SlArrowLeft />
-        </button>
-      </ConditionalDisplay>
+    <div className="flex w-96 p-5 justify-center text-lg">
+      <button
+        onClick={handlePrevButton}
+        className={`${!isVisiblePrevBtn && "invisible"}`}
+      >
+        <SlArrowLeft />
+      </button>
+
       <span className="flex-grow text-center">
         {getMonthLabel(curYear, curMonth)}
       </span>
-      <ConditionalDisplay condition={handleNextController()}>
-        <button onClick={handleNextButton}>
-          <SlArrowRight />
-        </button>
-      </ConditionalDisplay>
+
+      <button
+        onClick={handleNextButton}
+        className={`${!isVisibleNextBtn && "invisible"}`}
+      >
+        <SlArrowRight />
+      </button>
     </div>
   );
 };

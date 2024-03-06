@@ -4,7 +4,7 @@ import { useState } from "react";
 const Example = () => {
   const [date, setDate] = useState(new Date());
 
-  const handleDate = () => {
+  const handleDate = (date: Date) => {
     setDate(date);
   };
 
