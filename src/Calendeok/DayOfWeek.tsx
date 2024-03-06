@@ -8,7 +8,7 @@ type DayOfWeekType = {
 
 const DayOfWeek = ({ dayCaption }: DayOfWeekType) => {
   const renderDay = (day: string) => (
-    <th key={day} className="font-normal  w-14">
+    <th key={day} className="font-normal  w-14 border-b-2">
       {day}
     </th>
   );

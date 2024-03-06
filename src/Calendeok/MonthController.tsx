@@ -66,18 +66,16 @@ const MonthController = ({
   const isVisibleNextBtn = handleNextController();
 
   return (
-    <div className="flex w-96 p-5 justify-center text-lg">
+    <div className="flex w-96 p-6 justify-center text-lg ">
       <button
         onClick={handlePrevButton}
         className={`${!isVisiblePrevBtn && "invisible"}`}
       >
         <SlArrowLeft />
       </button>
-
       <span className="flex-grow text-center">
         {getMonthLabel(curYear, curMonth)}
       </span>
-
       <button
         onClick={handleNextButton}
         className={`${!isVisibleNextBtn && "invisible"}`}

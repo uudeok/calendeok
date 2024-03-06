@@ -23,7 +23,7 @@ const DateCell = ({
   const labelColor = getDateLabelColor(monthLabel);
 
   return (
-    <td className="py-3 relative">
+    <td className="py-3 relative ">
       {curMonthOnly && monthLabel !== MONTH_LABEL.MONTH_CURRENT ? null : (
         <button
           className={`datecell-btn ${

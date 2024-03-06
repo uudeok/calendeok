@@ -53,12 +53,12 @@ const App = () => {
 
   return (
     <div
-      className="flex flex-col items-center w-full h-full bg-light-gray"
+      className="flex flex-col items-center w-full h-full"
       onClick={handleCalendarClick}
     >
       <Example />
 
-      <h2 className="text-3xl text-orange-600 mb-4 mt-4">
+      <h2 className="text-3xl text-orange-600 mb-4 mt-5">
         DatePicker & TimePicker
       </h2>
       <input

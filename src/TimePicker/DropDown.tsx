@@ -58,7 +58,7 @@ const DropDown = ({
       </div>
 
       <ConditionalDisplay condition={isFolded}>
-        <ul className="h-80 overflow-auto">
+        <ul className="h-64 overflow-auto">
           <DynamicRender data={timeList} renderItem={renderTime} />
         </ul>
       </ConditionalDisplay>
