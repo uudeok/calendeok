@@ -72,7 +72,7 @@ const App = () => {
           <Calender
             selected={date}
             onClick={handleDate}
-            curMonthOnly={false}
+            curMonthOnly={true}
             minDate={new Date()}
             maxDate={laterOneMonth}
             filterDate={isOpenDay}
