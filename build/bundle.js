@@ -91,7 +91,7 @@ var App = function App() {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Calendeok__WEBPACK_IMPORTED_MODULE_2__["default"], {
           selected: date,
           onClick: handleDate,
-          curMonthOnly: false,
+          curMonthOnly: true,
           minDate: new Date(),
           maxDate: laterOneMonth,
           filterDate: isOpenDay,

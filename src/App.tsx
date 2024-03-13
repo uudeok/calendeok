@@ -58,7 +58,7 @@ const App = () => {
     >
       <Example />
 
-      <h2 className="text-3xl text-orange-600 mb-4 mt-5">
+      <h2 className="text-3xl text-orange-600 mb-4 mt-5 font-pre">
         DatePicker & TimePicker
       </h2>
       <input

@@ -14,6 +14,9 @@ module.exports = {
       width: {
         14: "14.28%",
       },
+      fontFamily: {
+        pre: ["Pretendard-Regular"],
+      },
     },
   },
   plugins: [],

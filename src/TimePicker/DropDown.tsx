@@ -36,7 +36,7 @@ const DropDown = ({
       <li
         key={time.label}
         onClick={() => handleTime(time.label)}
-        className={`h-14 p-2 border text-center border-none text-lg
+        className={`h-14 p-2 border text-center border-none text-lg font-pre
         ${
           result && time.selectable
             ? "hover:bg-slate-100 cursor-pointer"
@@ -51,7 +51,7 @@ const DropDown = ({
   return (
     <>
       <div
-        className="w-auto h-14 text-lg bg-bright-blue rounded-md cursor-pointer relative flex items-center justify-center text-white"
+        className="w-auto h-14 text-xl font-pre bg-bright-blue rounded-md cursor-pointer relative flex items-center justify-center text-white"
         onClick={handleFolder}
       >
         {selectedTime ? selectedTime : placeholder}

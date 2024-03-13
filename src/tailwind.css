@@ -15,3 +15,28 @@ body {
     @apply w-12 h-12 flex justify-center items-center text-center relative;
   }
 }
+
+@font-face {
+  font-family: "Pretendard-Medium";
+  src: url("./fonts/Pretendard-Medium.woff") format("truetype");
+}
+
+@font-face {
+  font-family: "Pretendard-Bold";
+  src: url("./fonts/Pretendard-Bold.woff") format("truetype");
+}
+
+@font-face {
+  font-family: "Pretendard-Light";
+  src: url("./fonts/Pretendard-Light.woff") format("truetype");
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("./fonts/Pretendard-Regular.woff") format("truetype");
+}
+
+@font-face {
+  font-family: "Pretendard-Black";
+  src: url("./fonts/Pretendard-Black.woff") format("truetype");
+}
