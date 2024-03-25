@@ -1,6 +1,6 @@
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
-type NavigateType = {
+type ControllerType = {
   curMonth: number;
   curYear: number;
   setCurMonth: React.Dispatch<React.SetStateAction<number>>;
@@ -16,7 +16,7 @@ const MonthController = ({
   setCurYear,
   minDate,
   maxDate,
-}: NavigateType) => {
+}: ControllerType) => {
   const handleNextController = () => {
     if (!maxDate) return true;
     const maxMonth = maxDate.getMonth();
@@ -73,7 +73,7 @@ const MonthController = ({
       >
         <SlArrowLeft />
       </button>
-      <span className="flex-grow text-center font-Pre text-xl">
+      <span className="flex-grow text-center font-pre text-xl">
         {getMonthLabel(curYear, curMonth)}
       </span>
       <button
