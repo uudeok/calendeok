@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import useCalendar from './hooks/useCalendar';
 import dayjs from 'dayjs';
+import styled, { css } from 'styled-components';
 
 const Example = () => {
-    const [selected, setSelected] = useState<Date>(new Date());
+    const [selected, setSelected] = useState<Date>();
     const selectedDate = dayjs(selected).format('YYYY-MM-DD');
 
     const handleDate = (date: Date) => {
@@ -14,22 +15,17 @@ const Example = () => {
 
     return (
         <>
-            <h2 className="text-3xl text-orange-600 mb-2 mt-5 font-pre">Calendoek</h2>
-            <div className="w-40 text-center border border-black p-2 mt-4 mb-2 font-pre bg-white">{selectedDate}</div>
-            <div className="mx-auto flex flex-col items-center text-center w-350 h-450 bg-white p-4 font-pre">
+            <h2 className="text-3xl text-orange-600 mb-4 mt-5 font-pre">Calendoek</h2>
+            <input className="border border-black p-2 text-center mb-4" value={selectedDate} readOnly />
+
+            <Container>
                 <div className="p-4 text-2xl font-bold text-left ">
-                    <div>
-                        {curYear}년 {curMonth + 1}월
-                    </div>
+                    {curYear}년 {curMonth + 1}월
                 </div>
 
                 <div className="flex justify-end gap-4">
-                    <button onClick={prevController} className="border-none bg-transparent cursor-pointer">
-                        이전 달
-                    </button>
-                    <button onClick={nextController} className="border-none bg-transparent cursor-pointer">
-                        다음 달
-                    </button>
+                    <Controller onClick={prevController}>이전 달</Controller>
+                    <Controller onClick={nextController}>다음 달</Controller>
                 </div>
                 <table className="p-2 mt-2 w-full">
                     <thead>
@@ -44,26 +40,67 @@ const Example = () => {
                             <tr key={index}>
                                 {rows.map((row) => (
                                     <td key={row.value} className={`text-15 relative pb-2.5 pt-2 text-center`}>
-                                        <button
-                                            className={`border-none cursor-pointer w-8 h-8  ${
-                                                selected === row.date && 'bg-blue-500 text-white rounded-full'
-                                            } hover:bg-blue-500 hover:text-white hover:rounded-full`}
+                                        <DateCell
+                                            isSelected={row.date === selected}
                                             onClick={() => handleDate(row.date)}
                                         >
                                             {row.date.getDate()}
-                                        </button>
-                                        {dayjs().isSame(row.date, 'day') && (
-                                            <div className="absolute w-full text-ss text-center">Today</div>
-                                        )}
+                                        </DateCell>
+                                        {dayjs().isSame(row.date, 'day') && <Today>Today</Today>}
                                     </td>
                                 ))}
                             </tr>
                         ))}
                     </tbody>
                 </table>
-            </div>
+            </Container>
         </>
     );
 };
 
 export default Example;
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 350px;
+    height: 450px;
+    background-color: white;
+    padding: 1rem;
+    font-family: 'Pretendard-Regular';
+`;
+
+const Controller = styled.button`
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+`;
+
+const DateCell = styled.button<{ isSelected: boolean }>`
+    border: none;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+
+    &:hover {
+        background-color: rgb(59 130 246);
+        color: white;
+        border-radius: 50%;
+    }
+
+    ${({ isSelected }) =>
+        isSelected &&
+        css`
+            background-color: rgb(59 130 246);
+            color: white;
+            border-radius: 50%;
+        `}
+`;
+
+const Today = styled.div`
+    position: absolute;
+    width: 100%;
+    font-size: 10px;
+    text-align: center;
+`;
