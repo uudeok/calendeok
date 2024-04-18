@@ -14,8 +14,9 @@ const Example = () => {
 
     return (
         <>
-            <div className="font-bold w-40 text-center border border-black p-2 mt-4 mb-2">{selectedDate}</div>
-            <div className="mx-auto flex flex-col items-center text-center w-350 h-450 bg-white p-4">
+            <h2 className="text-3xl text-orange-600 mb-2 mt-5 font-pre">Calendoek</h2>
+            <div className="w-40 text-center border border-black p-2 mt-4 mb-2 font-pre bg-white">{selectedDate}</div>
+            <div className="mx-auto flex flex-col items-center text-center w-350 h-450 bg-white p-4 font-pre">
                 <div className="p-4 text-2xl font-bold text-left ">
                     <div>
                         {curYear}년 {curMonth + 1}월
@@ -30,7 +31,7 @@ const Example = () => {
                         다음 달
                     </button>
                 </div>
-                <table className="p-2 mt-4 w-full">
+                <table className="p-2 mt-2 w-full">
                     <thead>
                         <tr>
                             {weeks.ko.map((week, index) => (
