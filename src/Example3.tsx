@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import dayjs from 'dayjs';
-import { Time } from './@types';
 import styled, { css } from 'styled-components';
 import useCalendar from './hooks/useCalendar';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import { Dropdown, DropdownMenu, DropdownOption, DropdownToggle } from './common/dropdown/Dropdown';
-import DynamicRender from './common/DynamicRender';
-import TimePicker from './TimePicker';
 
 const SUNDAY = 0;
 
@@ -40,9 +37,21 @@ const Example3 = () => {
         setSelectedTime(time);
     };
 
+    const validPrevMonth = () => {
+        return curMonth <= new Date().getMonth();
+    };
+
+    const validNextMonth = () => {
+        const maxMonth = 5;
+        return maxMonth < curMonth;
+    };
+
+    const isVisiblePrevBtn = validPrevMonth();
+    const isVisibleNextBtn = validNextMonth();
+
     return (
         <>
-            <h2 className="text-3xl text-orange-600 mb-4 mt-5 font-pre">useCalendar</h2>
+            <h2 className="text-3xl text-orange-600 mb-4 mt-5 font-pre">Calendeok2</h2>
             <input
                 className="border border-black p-2 text-center mb-4"
                 value={`${selectedDate} ${selectedTime}`}
@@ -51,13 +60,13 @@ const Example3 = () => {
 
             <Container>
                 <Header>
-                    <Controller onClick={prevController}>
+                    <Controller onClick={prevController} valid={isVisiblePrevBtn}>
                         <SlArrowLeft />
                     </Controller>
                     <div className="flex-1">
                         {curYear}년 {curMonth + 1}월
                     </div>
-                    <Controller onClick={nextController}>
+                    <Controller onClick={nextController} valid={isVisibleNextBtn}>
                         <SlArrowRight />
                     </Controller>
                 </Header>
@@ -75,7 +84,11 @@ const Example3 = () => {
                             <tr key={index}>
                                 {rows.map((row) => (
                                     <td key={row.value} className={`text-15 relative pb-2.5 pt-2 text-center`}>
-                                        <DateCell selected={row.date === selected} onClick={() => handleDate(row.date)}>
+                                        <DateCell
+                                            selected={row.date === selected}
+                                            disabled={dayjs(row.date).isBefore(dayjs(), 'date')}
+                                            onClick={() => handleDate(row.date)}
+                                        >
                                             {row.date.getDate()}
                                         </DateCell>
                                         {dayjs().isSame(row.date, 'day') && <Today>Today</Today>}
@@ -86,24 +99,16 @@ const Example3 = () => {
                     </tbody>
                 </table>
 
-                <Dropdown>
-                    <Toggle>선택</Toggle>
+                {/* <Dropdown>
+                    <Toggle>시간 선택</Toggle>
                     <Menu>
                         {TIME_LIST.map((item) => (
-                            <div onClick={() => handleTime(item.time)}>
+                            <div onClick={() => handleTime(item.time)} key={item.time}>
                                 <Option value={item.time} disabled={!selectedDate} />
                             </div>
                         ))}
                     </Menu>
-                </Dropdown>
-
-                {/* <TimePicker
-                    timeInterval={30}
-                    placeholder="시간 선택"
-                    onClickTime={handleTime}
-                    selectedTime={selectedTime}
-                    selected={selected}
-                /> */}
+                </Dropdown> */}
             </Container>
         </>
     );
@@ -122,7 +127,7 @@ const Container = styled.div`
     flex-direction: column;
     text-align: center;
     width: 350px;
-    /* height: 500px; */
+    height: 450px;
     background-color: white;
     padding: 1rem;
     font-family: 'Pretendard-Regular';
@@ -135,13 +140,19 @@ const Header = styled.div`
     font-weight: bold;
 `;
 
-const Controller = styled.button`
+const Controller = styled.button<{ valid: boolean }>`
     border: none;
     background-color: transparent;
     cursor: pointer;
+
+    ${({ valid }) =>
+        valid &&
+        css`
+            visibility: hidden;
+        `}
 `;
 
-const DateCell = styled.button<{ selected: boolean }>`
+const DateCell = styled.button<{ selected: boolean; disabled: boolean }>`
     border: none;
     cursor: pointer;
     width: 2rem;
@@ -159,6 +170,13 @@ const DateCell = styled.button<{ selected: boolean }>`
             background-color: orange;
             color: white;
             border-radius: 50%;
+        `}
+
+    ${({ disabled }) =>
+        disabled &&
+        css`
+            color: rgba(38, 45, 57, 0.16);
+            pointer-events: none;
         `}
 `;
 
@@ -196,8 +214,6 @@ const Toggle = styled(DropdownToggle)<{ disabled?: boolean }>`
 `;
 
 const Menu = styled(DropdownMenu)`
-    /* position: absolute; */
-    /* position: relative; */
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 10rem;

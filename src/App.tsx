@@ -24,8 +24,10 @@ const App = () => {
                 <div>
                     <Example3 />
                 </div>
+                <div>
+                    <Example2 calendarRef={calendarRef} setIsOpen={setIsOpen} isOpen={isOpen} />
+                </div>
             </Display>
-            <Example2 calendarRef={calendarRef} setIsOpen={setIsOpen} isOpen={isOpen} />
         </div>
     );
 };
