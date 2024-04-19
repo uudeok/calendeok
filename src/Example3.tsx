@@ -116,12 +116,6 @@ const Example3 = () => {
 
 export default Example3;
 
-const Self = styled.div`
-    padding: 0.5rem;
-    position: absolute;
-    width: 100%;
-`;
-
 const Container = styled.div`
     display: flex;
     flex-direction: column;
