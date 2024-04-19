@@ -1,4 +1,4 @@
-import Calender from './Calendeok';
+import Calendeok from './Calendeok';
 import { useState } from 'react';
 import dayjs from 'dayjs';
 import { Time } from './@types';
@@ -34,10 +34,10 @@ const Example2 = () => {
 
     return (
         <>
-            <h2 className="text-3xl text-orange-600 mb-4 mt-5 font-pre">DatePicker & TimePicker</h2>
+            <h2 className="text-3xl text-orange-600 mb-4 mt-5 font-pre">Calendeok</h2>
             <input className="border border-black p-2 text-center mb-4" value={`${pickDate} ${time}`} readOnly />
             <div>
-                <Calender
+                <Calendeok
                     selected={date}
                     onClick={handleDate}
                     curMonthOnly={true}

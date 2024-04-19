@@ -34,7 +34,7 @@ type CalendarWithOutTimePicker = CalenderType & {
 
 type CombinedProps = CalendarWithTimePicker | CalendarWithOutTimePicker;
 
-const Calender = ({
+const Calendeok = ({
     selected,
     onClick,
     curMonthOnly,
@@ -93,7 +93,7 @@ const Calender = ({
     );
 };
 
-export default Calender;
+export default Calendeok;
 
 const Self = styled.div`
     text-align: center;

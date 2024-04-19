@@ -15,7 +15,7 @@ const Example = () => {
 
     return (
         <>
-            <h2 className="text-3xl text-orange-600 mb-4 mt-5 font-pre">Calendoek1</h2>
+            <h2 className="text-3xl text-orange-600 mb-4 mt-5 font-pre">useCalendar</h2>
             <input className="border border-black p-2 text-center mb-4" value={selectedDate} readOnly />
 
             <Container>
