@@ -99,7 +99,7 @@ const Example3 = () => {
                     </tbody>
                 </table>
 
-                {/* <Dropdown>
+                <Dropdown>
                     <Toggle>시간 선택</Toggle>
                     <Menu>
                         {TIME_LIST.map((item) => (
@@ -108,7 +108,7 @@ const Example3 = () => {
                             </div>
                         ))}
                     </Menu>
-                </Dropdown> */}
+                </Dropdown>
             </Container>
         </>
     );
@@ -121,7 +121,7 @@ const Container = styled.div`
     flex-direction: column;
     text-align: center;
     width: 350px;
-    height: 450px;
+    /* height: 450px; */
     background-color: white;
     padding: 1rem;
     font-family: 'Pretendard-Regular';
