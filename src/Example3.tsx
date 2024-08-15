@@ -5,20 +5,17 @@ import useCalendar from './hooks/useCalendar';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import { Dropdown, DropdownMenu, DropdownOption, DropdownToggle } from './common/dropdown/Dropdown';
 
-const SUNDAY = 0;
-
 const TIME_LIST = [
-    { time: '00:00' },
-    { time: '01:00' },
-    { time: '02:00' },
-    { time: '03:00' },
-    { time: '04:00' },
-    { time: '05:00' },
-    { time: '06:00' },
-    { time: '07:00' },
-    { time: '08:00' },
     { time: '09:00' },
     { time: '10:00' },
+    { time: '11:00' },
+    { time: '12:00' },
+    { time: '13:00' },
+    { time: '14:00' },
+    { time: '15:00' },
+    { time: '16:00' },
+    { time: '17:00' },
+    { time: '18:00' },
 ];
 
 const Example3 = () => {
@@ -51,7 +48,7 @@ const Example3 = () => {
 
     return (
         <>
-            <h2 className="text-3xl text-orange-600 mb-4 mt-5 font-pre">useCalendar & Dropdown</h2>
+            <h2 className="text-3xl text-orange-600 mb-4 mt-5 font-pre">Calendeok (3)</h2>
             <input
                 className="border border-black p-2 text-center mb-4"
                 value={`${selectedDate} ${selectedTime}`}
@@ -86,7 +83,10 @@ const Example3 = () => {
                                     <td key={row.value} className={`text-15 relative pb-2.5 pt-2 text-center`}>
                                         <DateCell
                                             selected={row.date === selected}
-                                            disabled={dayjs(row.date).isBefore(dayjs(), 'date')}
+                                            disabled={
+                                                dayjs(row.date).isBefore(dayjs(), 'date') ||
+                                                dayjs(row.date).isAfter(dayjs(), 'month')
+                                            }
                                             onClick={() => handleDate(row.date)}
                                         >
                                             {row.date.getDate()}
